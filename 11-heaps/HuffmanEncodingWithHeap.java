@@ -1,6 +1,3 @@
-import java.util.ArrayList;
-import java.util.Arrays;
-
 public class HuffmanEncodingWithHeap {
     private static final int ASCII8 = 256;
     private static final char LEFT = '0';
@@ -23,7 +20,7 @@ public class HuffmanEncodingWithHeap {
         // Nothing to parse if message is null
         if (message != null) {
             for (int i = 0; i < message.length(); i++) {
-                frequencies[(int) message.charAt(i)]++;
+                frequencies[message.charAt(i)]++;
             }
         }
         return frequencies;
@@ -49,7 +46,7 @@ public class HuffmanEncodingWithHeap {
 
     /**
      * Apply Huffman's algorithm to organize a forest of Huffman Nodes into a Huffman tree contained
-     * within a Minimum Heap. To achieve this, we remove the two nodes of least frequency from the
+     * within a Minimum Heap. To achieve this, we remove the two nodes of the least frequency from the
      * forest, make them left and right children of a new node with no symbol and a combined
      * frequency of its children and place it in the forest. After each iteration, the forest size
      * reduced by one node. When there is 1 node left in the forest, it is the root of the Huffman
@@ -81,7 +78,7 @@ public class HuffmanEncodingWithHeap {
         if (node != null) {
             // Base case when node has a symbol -- we've reach a leaf node in the tree
             if ((int) node.getSymbol() != 0) {
-                codes[(int) node.getSymbol()] = code;
+                codes[node.getSymbol()] = code;
             } else {
                 // Recursive case: intermediate nodes; explore their children updating the
                 // corresponding code with left and right information
