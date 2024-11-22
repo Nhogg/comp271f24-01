@@ -113,7 +113,7 @@ public class BST {
      */
     public boolean contains(String target) {
         boolean found = false;
-        if (root != null && target != null) {
+        if (this.root != null && target != null) {
             TreeNode current = this.root;
             while (current != null && !found) {
                 int comparison = target.compareTo(current.getWord());
