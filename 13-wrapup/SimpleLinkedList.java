@@ -81,16 +81,54 @@ public class SimpleLinkedList {
         }
     } // method add
 
-    /** Find and return the middle node of the linked list. */
+    /** Find and return the middle node of the linked list.
+     * In order to comply with both Programmer's Pact
+     * and the specifications of the assignment, we can only
+     * use one traversal (while loop.) We can get around this
+     * requirement by creating two cursors that step
+     * in different increments. One cursor steps in
+     * increments of one and the other in increments
+     * of the fractional part we are trying to divide
+     * into, in this case 2. When the twoStep reaches the end,
+     * the single step pointer will be in the middle.
+     */
     public Node findMiddle() {
+        Node oneStep = this.head;
+        if (oneStep != null) {
+            Node twoStep = this.head;
+            while (twoStep.next != null && twoStep.next.next != null) {
+                oneStep = oneStep.next;
+                twoStep = twoStep.next.next;
+            }
+
+        }
+        return oneStep;
     } // method SimpleLinkedList.findMiddle
 
     /**
      * Invert a linked list.
-     * 
-     * For this method you may NOT use SimpleLinkedList.add
+     * Again, in oder to follow the assignment requirements,
+     * we can only perform one traversal. Without logging
+     * the positions of each element, we can dynamically shift
+     * each element. Inside the while loop, we reverse
+     * chunk by chunk, starting with A and B, then B and C,
+     * C and D, and so on.
      */
     public SimpleLinkedList invert() {
+        if (this.head != null) {
+            Node current = this.head;
+            Node previous = null;
+            Node next = null;
+            while (current != null) {
+                next = current.next;
+                current.next = previous;
+                previous = current;
+                current = next;
+
+            }
+            this.head = previous;
+        }
+        return this;
     } // method SimpleLinkedList.invert
 
     /** String representation for the simple linked list */
@@ -140,6 +178,7 @@ public class SimpleLinkedList {
         } else {
             System.out.println("Method invert not working as specified.");
         }
+
     } // method SimpleLinkedList.main
 
 } // class SimpleLinkedList
